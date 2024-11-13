@@ -13,7 +13,7 @@
 {%- set osmajorrelease = salt['grains.get']('osmajorrelease', osrelease)|string %}
 {%- set oscodename = salt['grains.get']('oscodename') %}
 {%- set os_family_lower =  salt['grains.get']('os_family')|lower %}
-{%- set salt_repo = salt['pillar.get']('salt:repo', 'https://repo.saltproject.io') %}
+{%- set salt_repo = salt['pillar.get']('salt:repo', 'https://packages.broadcom.com') %}
 
 Fedora:
   pygit2: python2-pygit2
@@ -25,10 +25,10 @@ Amazon:
   key_url: '{{ salt_repo }}/{{ py_ver_repr or 'yum' }}/amazon/2/$basearch/{{ salt_release }}/SALTSTACK-GPG-KEY.pub'
 
 Ubuntu:
-  pkgrepo: 'deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=amd64] {{ salt_repo }}/salt/{{ py_ver_repr or 'apt' }}/{{ os_lower }}/{{ osrelease }}/amd64/{{ salt_release }} {{ oscodename }} main'
-  pkgrepo_keyring: '{{ salt_repo }}/salt/{{ py_ver_repr or 'apt' }}/{{ os_lower }}/{{ osrelease }}/amd64/{{ salt_release }}/SALT-PROJECT-GPG-PUBKEY-2023.gpg'
-  pkgrepo_keyring_hash: sha256=c6f6cbcd96fdb130b1dde8dcfc05d46a3a3f322ff0514f98e2e6473896243472
-  key_url: '{{ salt_repo }}/salt/{{ py_ver_repr or 'apt' }}/{{ os_lower }}/{{ osrelease }}/amd64/{{ salt_release }}/SALT-PROJECT-GPG-PUBKEY-2023.gpg'
+  pkgrepo: 'deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] {{ salt_repo }}/artifactory/saltproject-deb/ stable main'
+  pkgrepo_keyring: '{{ salt_repo }}/artifactory/api/security/keypair/SaltProjectKey/public'
+  pkgrepo_keyring_hash: sha256=36decef986477acb8ba2a1fc4041bcf9f22229ef6c939d0317c9e36a9d142b34
+  key_url: '{{ salt_repo }}/artifactory/api/security/keypair/SaltProjectKey/public'
   pygit2: python-pygit2
   gitfs:
     pygit2:

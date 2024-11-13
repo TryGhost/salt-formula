@@ -10,7 +10,7 @@
 {%-   set salt_release = 'archive/' ~ salt_release %}
 {%- endif %}
 {%- set osmajorrelease = salt['grains.get']('osmajorrelease', osrelease)|string %}
-{%- set salt_repo = salt['pillar.get']('salt:repo', 'https://repo.saltproject.io') %}
+{%- set salt_repo = salt['pillar.get']('salt:repo', 'https://packages.broadcom.com') %}
 
 Oracle Linux Server-7:
   pkgrepo_humanname: SaltStack repo for RHEL/CentOS {{ osmajorrelease }}
